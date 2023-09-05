@@ -41,3 +41,6 @@ complete -o nospace -C /usr/bin/terraform terraform
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+
+source /usr/share/doc/fzf/examples/key-bindings.zsh
+source /usr/share/doc/fzf/examples/completion.zsh
