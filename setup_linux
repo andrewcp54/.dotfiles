@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Will intall if not present on the system
+
+# Install omz
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+# Install starship (prompt)
+if [ ! -f ~/.config/starship.toml ]; then
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
+# Tmux plugin manager
+if [ ! -d "$HOME/.tmux/plugins/tpm"]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi

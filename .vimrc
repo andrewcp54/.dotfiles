@@ -7,7 +7,7 @@ set nu
 
 :tnoremap <Esc> <C-\><C-n>
 
-let mapleader=","
+let mapleader=" "
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -34,7 +34,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
-" leader key is ,
+" leader key is Space
 :noremap <leader>cs :,$s///gc\|1,''-&&<c-b><right><right><right><right>
 nnoremap <Leader>f :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 nnoremap <Leader>w :lua require'telescope.builtin'.live_grep(require('telescope.themes').get_dropdown({}))<cr>
@@ -88,10 +88,6 @@ let g:ale_fix_on_save = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" Start NERDTree and leave the cursor in it.
-autocmd VimEnter * NERDTree
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
 let NERDTreeShowHidden = 1
 set signcolumn=yes

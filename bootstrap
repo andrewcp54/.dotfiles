@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+case $1 in
+mac) ;;
+linux) ;;
+*)
+  echo "Invalid option."
+  exit 1
+  ;;
+esac
+
+BASIC_PACKAGES="git stow"
+
+# First install brew on a mac
+if [ $(uname) = "Darwin" ]; then
+  which brew &>/dev/null ||
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install "$BASIC_PACKAGES"
+elif [ -f "/etc/arch-release" ]; then
+  sudo pacman -Sy --noconfirm "$BASIC_PACKAGES"
+elif [ $(uname) = "FreeBSD" ]; then
+  sudo pkg install git stow
+fi
+
+# Now that git is available let's check out or update our dotfiles
+if [ -d ~/.dotfiles ]; then
+  PREV=$(pwd)
+  cd ~/.dotfiles
+  git pull
+  cd $PREV
+else
+  git clone git@github.com:andrewcp54/.dotfiles.git ~/.dotfiles
+fi
+
+# Stow install our apps
+~/.dotfiles/install $1
