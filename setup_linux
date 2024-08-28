@@ -8,11 +8,16 @@ if [ ! -d "$HOME/.oh-my-zsh" ]; then
 fi
 
 # Install starship (prompt)
-if [ ! -f ~/.config/starship.toml ]; then
-  curl -sS https://starship.rs/install.sh | sh
+if [ ! -f "$HOME/.config/starship.toml" ]; then
+  sh -c "$(curl -sS https://starship.rs/install.sh | sh)"
 fi
 
 # Tmux plugin manager
-if [ ! -d "$HOME/.tmux/plugins/tpm"]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
+  sh -c "$(git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm)"
+fi
+
+# Install kitty
+if [ ! -f "$HOME/.config/kitty/kitty.conf" ]; then
+  sh -c "$(curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin)"
 fi
