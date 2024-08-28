@@ -9,17 +9,14 @@ linux) ;;
   ;;
 esac
 
-BASIC_PACKAGES="git stow"
-
-# First install brew on a mac
 if [ $(uname) = "Darwin" ]; then
   which brew &>/dev/null ||
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew install "$BASIC_PACKAGES"
+  brew install git stow zsh
 elif [ -f "/etc/arch-release" ]; then
-  sudo pacman -Sy --noconfirm "$BASIC_PACKAGES"
+  sudo pacman -Sy --noconfirm git stow zsh
 elif [ $(uname) = "FreeBSD" ]; then
-  sudo pkg install git stow
+  sudo pkg install git stow zsh
 fi
 
 # Now that git is available let's check out or update our dotfiles
